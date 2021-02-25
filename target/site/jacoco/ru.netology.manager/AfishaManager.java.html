@@ -2,56 +2,45 @@
 
 import lombok.*;
 
-@RequiredArgsConstructor
-@NoArgsConstructor
 @Data
 public class AfishaManager {
 
-    @NonNull
-    int id;
-    @NonNull
-    String name;
-    @NonNull
-    String genre;
-    @NonNull
-    int price;
-    AfishaManager[] items = new AfishaManager[0];
-    int showCount;
+    String[] items = new String[0]; // Массив с фильмами
+    int showCount; // Колчиество выводимого добра
 
     // создание массивва
 
-    public void addToAfishaArray(AfishaManager item) { // создание массива с фильмами
-<span class="fc" id="L24">        int length = items.length+1;</span>
-<span class="fc" id="L25">        AfishaManager[] tmp = new AfishaManager[length];</span>
-<span class="fc" id="L26">        System.arraycopy(items,0,tmp,0,items.length);</span>
-<span class="fc" id="L27">        int lastIndex = tmp.length-1;</span>
-<span class="fc" id="L28">        tmp[lastIndex] = item;</span>
-<span class="fc" id="L29">        items = tmp;</span>
+    public void addToAfishaArray(String id, String name) { // создание массива с фильмами
+<span class="fc" id="L14">        int length = items.length + 1;</span>
+<span class="fc" id="L15">        String[] tmp = new String[length];</span>
+<span class="fc" id="L16">        System.arraycopy(items, 0, tmp, 0, items.length);</span>
+<span class="fc" id="L17">        int lastIndex = tmp.length - 1;</span>
+<span class="fc" id="L18">        tmp[lastIndex] = id + &quot;|&quot; + name;</span>
+<span class="fc" id="L19">        items = tmp;</span>
 
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L21">    }</span>
 
-    public AfishaManager[] afishaShow(int count){
+    public String[] afishaShow(int count) {
 
-<span class="fc bfc" id="L35" title="All 4 branches covered.">        if (count &gt; items.length || count &lt; 1){</span>
-<span class="fc" id="L36">            setShowCount(items.length);</span>
-        }
-        else {
-<span class="fc" id="L39">            setShowCount(count);</span>
-        }
-
-
-<span class="fc" id="L43">        AfishaManager[] result = new AfishaManager[getShowCount()];</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++){</span>
-<span class="fc" id="L45">            int index = items.length-i-1;</span>
-<span class="fc" id="L46">            result[i] = items [index];</span>
-
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (count &gt; items.length || count &lt; 1) {</span>
+<span class="fc" id="L26">            setShowCount(items.length);</span>
+        } else {
+<span class="fc" id="L28">            setShowCount(count);</span>
         }
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++){</span>
-<span class="fc" id="L51">            System.out.println(result[i]);</span>
+
+<span class="fc" id="L32">        String[] result = new String[getShowCount()];</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
+<span class="fc" id="L34">            int index = items.length - i - 1;</span>
+<span class="fc" id="L35">            result[i] = items[index];</span>
+
         }
 
-<span class="fc" id="L54">        return result;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
+<span class="fc" id="L40">            System.out.println(result[i]);</span>
+        }
+
+<span class="fc" id="L43">        return result;</span>
 
     }
 
