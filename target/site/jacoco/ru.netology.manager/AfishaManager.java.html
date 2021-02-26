@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AfishaManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Afisha</a> &gt; <a href="index.source.html" class="el_package">ru.netology.manager</a> &gt; <span class="el_source">AfishaManager.java</span></div><h1>AfishaManager.java</h1><pre class="source lang-java linenums">package ru.netology.manager;
 
 import lombok.*;
+import ru.netology.domain.CinemaItem;
 
 @Data
 public class AfishaManager {
 
-    String[] items = new String[0]; // Массив с фильмами
+    CinemaItem[] items = new CinemaItem[0]; // Массив с фильмами
     int showCount; // Колчиество выводимого добра
 
     // создание массивва
 
-    public void addToAfishaArray(String id, String name) { // создание массива с фильмами
-<span class="fc" id="L14">        int length = items.length + 1;</span>
-<span class="fc" id="L15">        String[] tmp = new String[length];</span>
-<span class="fc" id="L16">        System.arraycopy(items, 0, tmp, 0, items.length);</span>
-<span class="fc" id="L17">        int lastIndex = tmp.length - 1;</span>
-<span class="fc" id="L18">        tmp[lastIndex] = id + &quot;|&quot; + name;</span>
-<span class="fc" id="L19">        items = tmp;</span>
+    public void addToAfishaArray(CinemaItem item) { // создание массива с фильмами
+<span class="fc" id="L15">        int length = items.length + 1;</span>
+<span class="fc" id="L16">        CinemaItem[] tmp = new CinemaItem[length];</span>
+<span class="fc" id="L17">        System.arraycopy(items, 0, tmp, 0, items.length);</span>
+<span class="fc" id="L18">        int lastIndex = tmp.length - 1;</span>
+<span class="fc" id="L19">        tmp[lastIndex] = item;</span>
+<span class="fc" id="L20">        items = tmp;</span>
 
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L22">    }</span>
 
-    public String[] afishaShow(int count) {
+    public CinemaItem[] afishaShow(int count) {
 
-<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (count &gt; items.length || count &lt; 1) {</span>
-<span class="fc" id="L26">            setShowCount(items.length);</span>
+<span class="fc bfc" id="L26" title="All 4 branches covered.">        if (count &gt; items.length || count &lt; 1) {</span>
+<span class="fc" id="L27">            setShowCount(items.length);</span>
         } else {
-<span class="fc" id="L28">            setShowCount(count);</span>
+<span class="fc" id="L29">            setShowCount(count);</span>
         }
 
 
-<span class="fc" id="L32">        String[] result = new String[getShowCount()];</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
-<span class="fc" id="L34">            int index = items.length - i - 1;</span>
-<span class="fc" id="L35">            result[i] = items[index];</span>
+<span class="fc" id="L33">        CinemaItem[] result = new CinemaItem[getShowCount()];</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
+<span class="fc" id="L35">            int index = items.length - i - 1;</span>
+<span class="fc" id="L36">            result[i] = items[index];</span>
 
         }
 
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
-<span class="fc" id="L40">            System.out.println(result[i]);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (int i = 0; i &lt; getShowCount(); i++) {</span>
+<span class="fc" id="L41">            System.out.println(result[i]);</span>
         }
 
-<span class="fc" id="L43">        return result;</span>
+<span class="fc" id="L44">        return result;</span>
 
     }
 
