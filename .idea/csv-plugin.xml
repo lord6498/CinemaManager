@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/src/main/java/ru/netology/manager/AfishaRepository.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/src/test/java/ru/netology/manager/AfishaManagerTest.java">
           <value>
             <Attribute>
