@@ -1,14 +1,18 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.CinemaItem;
 
-
+@ExtendWith(MockitoExtension.class)
 class AfishaManagerTest {
-
-    private AfishaManager afisha = new AfishaManager();
+    @Mock
+    private AfishaRepository repository;
+    @InjectMocks
+    private AfishaManager afisha;
     CinemaItem item1 = new CinemaItem(1, "King Arthur",65);
     CinemaItem item2 = new CinemaItem(2, "King Arthur 2",65);
     CinemaItem item3 = new CinemaItem(3, "Game of Thrones",65);
@@ -20,37 +24,13 @@ class AfishaManagerTest {
     CinemaItem item9 = new CinemaItem(8, "Mine story",65);
     CinemaItem item10 = new CinemaItem(9, "King Arthur 3",65);
 
-    @BeforeEach
-    public void setUp(){
-        afisha.addToAfishaArray(item1);
-        afisha.addToAfishaArray(item2);
-        afisha.addToAfishaArray(item3);
-        afisha.addToAfishaArray(item4);
-        afisha.addToAfishaArray(item5);
-        afisha.addToAfishaArray(item6);
-        afisha.addToAfishaArray(item7);
-        afisha.addToAfishaArray(item8);
-        afisha.addToAfishaArray(item9);
-        afisha.addToAfishaArray(item10);
-
-    }
 
     @Test
     public void AddAfishaArrayCount() { // проверяем количество выводимых строк с фильмами
+        CinemaItem[] returned = new CinemaItem[]{item1,item2,item3};
 
-        int expected;
+        afisha.addFilms(item1);
 
-        expected = 5;
-        CinemaItem[] actual = afisha.afishaShow(5); //проверка длины массива, который выводится. должен соответстовать числу Count
-        Assertions.assertEquals(expected, actual.length);
-
-        actual = afisha.afishaShow(0); //Если выводишь 0, то вывести все
-        expected = 10;
-        Assertions.assertEquals(expected, actual.length);
-
-        actual = afisha.afishaShow(11); //если ыводишь больше имеющегося, то выводишь весь остаток
-        expected = 10;
-        Assertions.assertEquals(expected, actual.length);
 
 
     }
