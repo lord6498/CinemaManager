@@ -11,20 +11,13 @@ import java.lang.reflect.Array;
 
 @ExtendWith(MockitoExtension.class)
 class AfishaManagerTest {
-   // @Mock
+    @Mock
     private AfishaRepository repository;
-  //  @InjectMocks
-    AfishaManager afisha = new AfishaManager();
+    @InjectMocks
+    private AfishaManager afisha;
     CinemaItem item1 = new CinemaItem(1, "King Arthur",65);
     CinemaItem item2 = new CinemaItem(2, "King Arthur 2",65);
     CinemaItem item3 = new CinemaItem(3, "Game of Thrones",65);
-    CinemaItem item4 = new CinemaItem(4, "The Witcher",65);
-    CinemaItem item5 = new CinemaItem(4, "The Witcher 2",65);
-    CinemaItem item6 = new CinemaItem(5, "Shreck",65);
-    CinemaItem item7 = new CinemaItem(6, "Warcraft",65);
-    CinemaItem item8 = new CinemaItem(7, "Elysium",65);
-    CinemaItem item9 = new CinemaItem(8, "Mine story",65);
-    CinemaItem item10 = new CinemaItem(9, "King Arthur 3",65);
 
 
     @Test
@@ -33,7 +26,7 @@ class AfishaManagerTest {
 
         afisha.addFilms(item1);
 
-        Assertions.assertArrayEquals(returned, afisha.getAll());
+        Assertions.assertArrayEquals(returned, repository.findall());
 
 
 

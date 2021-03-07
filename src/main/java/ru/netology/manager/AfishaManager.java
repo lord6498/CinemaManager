@@ -5,16 +5,11 @@ import ru.netology.domain.CinemaItem;
 
 @Data
 public class AfishaManager {
-    
 
     private AfishaRepository repository;
 
     public AfishaManager(AfishaRepository repository){
         this.repository = repository;
-    }
-
-    public AfishaManager() {
-
     }
 
 
