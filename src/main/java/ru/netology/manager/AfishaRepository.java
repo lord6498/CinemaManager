@@ -7,9 +7,7 @@ import ru.netology.domain.CinemaItem;
 public class AfishaRepository {
 
     CinemaItem[] items = new CinemaItem[0]; // Массив с фильмами
-    int showCount; // Колчиество выводимого добра
-
-    // создание массивва
+    int showCount;
 
     public void addToAfishaArray(CinemaItem item) { // создание массива с фильмами
         int length = items.length + 1;
@@ -23,9 +21,7 @@ public class AfishaRepository {
 
     }
 
-
-
-    public CinemaItem[] findall(){
+    public CinemaItem[] findAll() { // вывод всех фильмов
         return items;
     }
 

@@ -8,28 +8,28 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.CinemaItem;
 
 import java.lang.reflect.Array;
+import java.util.Objects;
 
 @ExtendWith(MockitoExtension.class)
 class AfishaManagerTest {
-    @Mock
-    private AfishaRepository repository;
-    @InjectMocks
-    private AfishaManager afisha;
+
+    AfishaRepository repo = new AfishaRepository();
+    //@Mock
+    //@InjectMocks
     CinemaItem item1 = new CinemaItem(1, "King Arthur",65);
     CinemaItem item2 = new CinemaItem(2, "King Arthur 2",65);
     CinemaItem item3 = new CinemaItem(3, "Game of Thrones",65);
 
 
     @Test
-    public void AddAfishaArrayCount() { // проверяем количество выводимых строк с фильмами
+    public void CurrentArrayEqualsNeededArray() { // проверяем количество выводимых строк из массива в репозитории с фильмами
+        AfishaManager afisha = new AfishaManager(new AfishaRepository(), 9);
         CinemaItem[] returned = new CinemaItem[]{item1,item2,item3};
-
         afisha.addFilms(item1);
-
-        Assertions.assertArrayEquals(returned, repository.findall());
-
-
-
+        afisha.addFilms(item2);
+        afisha.addFilms(item3);
+        AfishaRepository repo = afisha.getRepository(); // присваиваем текущий репозиторий сервису repo
+        Assertions.assertArrayEquals(returned, repo.findAll());
     }
 
 }
