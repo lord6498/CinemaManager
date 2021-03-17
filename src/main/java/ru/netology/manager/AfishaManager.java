@@ -14,7 +14,7 @@ public class AfishaManager {
         this.showCount = showCount;
     }
 
-    public AfishaManager() {
+    public AfishaManager() {                    //Без этого окнструктора мокито отказался работать
         this(new AfishaRepository(), 9);
     }
 

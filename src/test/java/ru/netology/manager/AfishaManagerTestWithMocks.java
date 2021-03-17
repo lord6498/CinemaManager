@@ -39,7 +39,15 @@ class AfishaManagerTestWithMocks {
 
     @Test
     public void findAll(){
+        AfishaManager manager = new AfishaManager(new AfishaRepository(),2);
+        manager.addFilms(item1);
+        manager.addFilms(item2);
+        manager.addFilms(item3);
 
+    CinemaItem[] actual = manager.getAll();
+    CinemaItem[] expected = new CinemaItem[]{item3, item2};
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
