@@ -34,18 +34,21 @@ public class AfishaRepository {
     }
 
     public void removeById(int cinemaId) {
-        int lenght = items.length - 1;
-        CinemaItem[] tmp = new CinemaItem[lenght];
-        int index = 0;
-        for (CinemaItem item : items) {
-            if (item.getId() != cinemaId) {
-                tmp[index] = item;
-                index++;
+        if ((cinemaId <= items.length) && (cinemaId >= 0)){
+            int lenght = items.length - 1;
+            CinemaItem[] tmp = new CinemaItem[lenght];
+            int index = 0;
+            for (CinemaItem item : items) {
+                if (item.getId() != cinemaId) {
+                    tmp[index] = item;
+                    index++;
+                }
             }
+
+            items = tmp;
+            System.out.println(items);
         }
 
-        items = tmp;
-        System.out.println(items);
     }
 
     public void removeAll() {

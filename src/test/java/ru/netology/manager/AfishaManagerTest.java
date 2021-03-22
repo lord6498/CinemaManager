@@ -13,8 +13,7 @@ import java.util.Objects;
 @ExtendWith(MockitoExtension.class)
 class AfishaManagerTest {
 
-    AfishaRepository repo = new AfishaRepository();
-    AfishaManager afisha = new AfishaManager(new AfishaRepository(), 9);
+    AfishaManager afisha = new AfishaManager(new AfishaRepository(), 10);
 
     CinemaItem item1 = new CinemaItem(1, "King Arthur", 65);
     CinemaItem item2 = new CinemaItem(2, "King Arthur 2", 65);
@@ -45,8 +44,7 @@ class AfishaManagerTest {
 
     @Test
     public void currentArrayEqualsNeededArray() { // проверяем количество выводимых строк из массива в репозитории с фильмами
-
-        CinemaItem[] returned = new CinemaItem[]{item3, item2, item1};
+        CinemaItem[] returned = new CinemaItem[]{item10,item9,item8,item7,item6,item5,item4,item3,item2, item1};
         Assertions.assertArrayEquals(returned, afisha.getAll());
     }
 
@@ -62,7 +60,18 @@ class AfishaManagerTest {
     }
 
     @Test
-    public void findByIdinRepo() {
+    public void deleteIfNotExistInArray() {
+
+        afisha.remove(11);
+
+        CinemaItem[] actual = afisha.getAll();
+        CinemaItem[] expected = new CinemaItem[]{item10,item9,item8,item7,item6,item5,item4,item3,item2, item1};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void findByIdInRepo() {
         AfishaRepository repo = afisha.getRepository(); // присваиваем текущий репозиторий сервису repo
         int idToFind = 2;
 

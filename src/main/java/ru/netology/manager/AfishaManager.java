@@ -15,7 +15,7 @@ public class AfishaManager {
     }
 
     public AfishaManager() {                    //Без этого окнструктора мокито отказался работать
-        this(new AfishaRepository(), 9);
+        this(new AfishaRepository(), 10);
     }
 
     public void addFilms(CinemaItem item) { // Добавление эелементов
