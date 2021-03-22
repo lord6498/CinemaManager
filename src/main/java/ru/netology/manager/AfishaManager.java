@@ -1,48 +1,51 @@
 package ru.netology.manager;
 
-import lombok.*;
+import lombok.Data;
 import ru.netology.domain.CinemaItem;
 
 @Data
 public class AfishaManager {
 
-    CinemaItem[] items = new CinemaItem[0]; // Массив с фильмами
-    int showCount; // Колчиество выводимого добра
+    private final AfishaRepository repository;
+    private final int showCount;
 
-    // создание массивва
-
-    public void addToAfishaArray(CinemaItem item) { // создание массива с фильмами
-        int length = items.length + 1;
-        CinemaItem[] tmp = new CinemaItem[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
-
+    public AfishaManager(AfishaRepository repo, int showCount){
+        this.repository = repo;
+        this.showCount = showCount;
     }
 
-    public CinemaItem[] afishaShow(int count) {
+    public AfishaManager() {                    //Без этого окнструктора мокито отказался работать
+        this(new AfishaRepository(), 9);
+    }
 
-        if (count > items.length || count < 1) {
-            setShowCount(items.length);
-        } else {
-            setShowCount(count);
+    public void addFilms(CinemaItem item) { // Добавление эелементов
+        System.out.println(item);
+        repository.save(item);
+    }
+
+    public CinemaItem[] getAll(){
+        CinemaItem[] itemsFromRepo = repository.findAll();
+        int resultSize = Math.min(itemsFromRepo.length,showCount);
+        CinemaItem[] result = new CinemaItem[resultSize];
+
+        for (int i = 0; i < result.length; i++){
+            int index = itemsFromRepo.length-i-1;
+            result[i] = itemsFromRepo[index];
         }
-
-
-        CinemaItem[] result = new CinemaItem[getShowCount()];
-        for (int i = 0; i < getShowCount(); i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
-
-        }
-
-        for (int i = 0; i < getShowCount(); i++) {
-            System.out.println(result[i]);
-        }
-
         return result;
+    }
 
+    public void remove(int id){
+        repository.removeById(id);
+    }
+
+    public void removeAll(){
+        repository.removeAll();
+    }
+
+    public CinemaItem findId(int id){
+        CinemaItem item = repository.findById(id);
+        return item;
     }
 
 }
