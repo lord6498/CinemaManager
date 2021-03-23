@@ -34,7 +34,7 @@ public class AfishaRepository {
     }
 
     public void removeById(int cinemaId) {
-        if ((cinemaId <= items.length) && (cinemaId >= 0)){
+        if ((cinemaId <= items.length) && (cinemaId >= 0)) {
             int lenght = items.length - 1;
             CinemaItem[] tmp = new CinemaItem[lenght];
             int index = 0;
